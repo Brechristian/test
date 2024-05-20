@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+</head>
+<body>
+
+    <h1>Guess the Secret Number</h1>
+
+    <form id="guessForm">
+        <label for="guess">Enter your guess:</label>
+        <input type="number" id="guess" name="guess" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <p id="message"></p>
+
+    <!-- Images for countdown -->
+    <div id="countdownImages">
+        <img src="assets/3.png" id="countdown3">
+        <img src="assets/2.png" id="countdown2" style="display: none;">
+        <img src="assets/1.png" id="countdown1" style="display: none;">
+    </div>
+
+    <script>
+        var SECRET_NUMBER = 42;
+
+        document.getElementById('guessForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var guess = parseInt(document.getElementById('guess').value);
+            var message = document.getElementById('message');
+
+            // Countdown images
+            var countdownImages = document.getElementById('countdownImages');
+
+            // Function to show the countdown images sequentially
+            function showCountdown() {
+                document.getElementById('countdown3').style.display = 'block';
+                document.getElementById('countdown2').style.display = 'none';
+                document.getElementById('countdown1').style.display = 'none';
+
+                setTimeout(function() {
+                    document.getElementById('countdown3').style.display = 'none';
+                    document.getElementById('countdown2').style.display = 'block';
+                    setTimeout(function() {
+                        document.getElementById('countdown2').style.display = 'none';
+                        document.getElementById('countdown1').style.display = 'block';
+                        setTimeout(function() {
+                            document.getElementById('countdown1').style.display = 'none';
+                            displayMessage();
+                        }, 1000);
+                    }, 1000);
+                }, 1000);
+            }
+
+            // Function to display the message based on the guess
+            function displayMessage() {
+                if (isNaN(guess)) {
+                    message.textContent = 'Please enter a valid number.';
+                } else if (guess < SECRET_NUMBER) {
+                    message.textContent = 'Too low!';
+                } else if (guess > SECRET_NUMBER) {
+                    message.textContent = 'Too high!';
+                } else if (guess == SECRET_NUMBER) {
+                    message.textContent = 'Congratulations! You guessed it!';
+                }
+            }
+
+            // Start the countdown
+            showCountdown();
+        });
+    </script>
+</body>
+</html>

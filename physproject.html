@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lizzie's Physics Project</title>
+</head>
+<body>
+
+    <h1>Guess the Secret Number</h1>
+
+<p>hello</p>
+
+<form>
+    <label>
+        Spring Constant (N/m squared)
+    </label>
+    <input type="number" id="sConstant" name="sConstant">
+    <button type="button" onclick="Math()">
+        Go
+    </button>
+</form>
+
+<p>this comes after the end of the form</p>
+
+<div>
+<img src="assets/all1stPos.jpg">
+<img src="assets/all2ndPos.jpg">
+<img src="assets/all3rdPos.jpg">
+<img src="assets/all4thPos.jpg">
+<img src="assets/all5thPos.jpg">
+<img src="assets/all6thPos.jpg"> 
+</div>
+
+<!--  -->
+    <script>
+        
+        function Math(){
+        
+        // extract user input and convert to integer - set it equal to a variable
+
+        //string --> integer
+        var sConstant = parseInt(document.getElementById('sConstant').value)
+
+        // delcare all vairbales
+        var mass = 1
+        var velocity = 1
+        var insertvariablehere = 1
+
+        // calcualtions clacualtions calculations
+
+        var FinalCalculationNm = 0
+
+
+
+
+        if (isNaN(FinalCalculationNm)){
+           alert("Needs to be a real number");
+        }        
+        else if (FinalCalculationNm >= 10894){
+            alert("Hooray, you won't die today!")
+            // display good graphic
+            
+        }
+        else if (FinalCalculationNm < 10894){
+            alert("You better have a helmet.")
+            // display bad graphic
+        }
+        
+    
+    
+    
+    
+    }
+
+    </script>
+
+</body>
+</html>
+

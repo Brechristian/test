@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+</head>
+<body>
+
+    <h1>Guess the Secret Number</h1>
+
+    <!-- We need to create a FORM to extract the user input so we can use it for  equations later -->
+
+    <!-- Later, we will call this number by matching the respective ID's. 
+        The form id is "guessForm" and this is what we will use to verify the user's input -->
+    <form id="guessForm">
+        <label for="guess">Enter your guess:</label>
+        <input type="number" id="guess" name="guess" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- After the user makes a guess, we need to tell them what happens next. for now, this paragraph tag is empty,
+        but it will update after we go throug the logic -->
+    <p id="message"></p>
+
+
+    <!-- a script tag is where you will put all of your code -->
+    <script>
+
+
+        // Secret number (for simplicity, we'll hardcode it here)
+        var SECRET_NUMBER = 42;
+
+
+        // dont worry about these lines of code
+        document.getElementById('guessForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // ok, now we need to manipulate the user's input. By default, the input the user enters is in STRING format. It is not INTEGER format. 
+            // We cannot use STRING variables in an equation. the computer will flip out. So, we need to take the user's input and convert it to INTEGER format
+            // parseInt is what converts to integer format. 
+            // get elemeny by id is the fancy term used to extract the user input. in this case, the id is "guess" see line 18 of the code to make the connection
+            parseInt(document.getElementById('guess').value);
+
+            // now that we converted the user input to integer format, we need to take the user's input and set it equal to a variable. 
+            // the variable is what we are going to manipulate
+            var guess = parseInt(document.getElementById('guess').value);
+
+            // remember how i said the paragraphy tag was empty? this is how we will update it
+            var message = document.getElementById('message');
+
+
+
+            // this is essentially logic gates. You're probably slightly familiar with these
+            // the first two lines say: if the user input's guess is NaN (not a number), then say "Please enter a valid number"
+            // otherwise, if the user's guess is less than the secret number, tell the user its too low
+            // otherwise, if the user's guess is higher than the secret number, tell the user its too high
+            // otherwise, if the user's guess is exactly the same as the secret number, tell them you guessed it
+            if (isNaN(guess)) {
+                message.textContent = 'Please enter a valid number.';
+            } else if (guess < SECRET_NUMBER) {
+                message.textContent = 'Too low!';
+            } else if (guess > SECRET_NUMBER) {
+                message.textContent = 'Too high!';
+            } else if (guess == SECRET_NUMBER) {
+                message.textContent = 'Congratulations! You guessed it!';
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
